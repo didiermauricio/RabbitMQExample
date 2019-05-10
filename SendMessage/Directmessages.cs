@@ -9,7 +9,7 @@ namespace RequestRabbitMQ
         private const string UName = "guest";
         private const string PWD = "guest";
         private const string HName = "localhost";
-        public void SendMessage()
+        public void SendMessage(String message)
         {
             //Main entry point to the RabbitMQ .NET AMQP client
             var connectionFactory = new ConnectionFactory()
@@ -22,9 +22,10 @@ namespace RequestRabbitMQ
             var model = connection.CreateModel();
             var properties = model.CreateBasicProperties();
             properties.Persistent = false;
-            byte[] messagebuffer = Encoding.Default.GetBytes("Direct Message");
+            byte[] messagebuffer = Encoding.Default.GetBytes(message);
             model.BasicPublish("request.exchange", "directexchange?key", properties, messagebuffer);
             Console.WriteLine("Message Sent");
+            Console.WriteLine("*********************************************************************************************************");
         }
 
     }

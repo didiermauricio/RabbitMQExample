@@ -14,6 +14,7 @@ namespace RabbitMQConsumer
         }
         public override void HandleBasicDeliver(string consumerTag, ulong deliveryTag, bool redelivered, string exchange, string routingKey, IBasicProperties properties, byte[] body)
         {
+            Console.WriteLine("*************************************************************************************************************************");
             Console.WriteLine($"Consuming Message");
             Console.WriteLine(string.Concat("Message received from the exchange ", exchange));
             Console.WriteLine(string.Concat("Consumer tag: ", consumerTag));
